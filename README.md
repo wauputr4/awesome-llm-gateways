@@ -4,6 +4,8 @@ A curated list of open-source LLM gateways, AI gateways, and model-routing proxi
 
 LLM gateways sit between applications and model providers. They usually handle provider routing, retries, fallbacks, observability, budgets, access control, guardrails, and OpenAI-compatible API translation.
 
+Related terms include AI gateway, model gateway, inference gateway, LLM proxy, model router, and OpenAI-compatible proxy.
+
 ## Contents
 
 - [Quick Comparison](#quick-comparison)
@@ -23,6 +25,7 @@ LLM gateways sit between applications and model providers. They usually handle p
 | Kong Gateway | [Kong/kong](https://github.com/Kong/kong) | Lua | Apache-2.0 | Enterprises that already need API management and want AI gateway features in the same stack. | Mature API gateway, plugin ecosystem, AI gateway and MCP-related features, strong operations story. | Heavier than purpose-built LLM proxies; some advanced workflows may depend on Kong ecosystem/product choices. |
 | Apache APISIX | [apache/apisix](https://github.com/apache/apisix) | Lua | Apache-2.0 | Teams that want a cloud-native API gateway with AI gateway capabilities. | Mature Apache project, API management, Kubernetes ingress, plugins, AI gateway direction. | More general-purpose API gateway than LLM-specific proxy; AI workflows may need plugin/configuration work. |
 | Bifrost | [maximhq/bifrost](https://github.com/maximhq/bifrost) | Go | Apache-2.0 | Teams optimizing for low-overhead model routing and gateway performance. | Go implementation, model routing, load balancing, guardrails, observability and cost-oriented features. | Younger than established API gateways; benchmark and feature claims should be verified in your workload. |
+| TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 
 ## Projects
 
@@ -165,6 +168,26 @@ Bifrost is a Go-based AI gateway focused on model routing, load balancing, guard
 - Younger than mature API gateway stacks such as Kong or APISIX.
 - Published performance and feature claims should be validated against your deployment shape, providers, and traffic patterns.
 
+### TensorZero
+
+- GitHub: [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero)
+- Website: [tensorzero.com](https://tensorzero.com)
+- Language: Rust
+- License: Apache-2.0
+
+TensorZero is an open-source LLMOps platform that includes an LLM gateway alongside observability, evaluation, optimization, and experimentation workflows. It fits teams that want model access to connect directly with feedback loops and systematic prompt/model improvement.
+
+**Pros**
+
+- Apache-2.0 licensed.
+- Rust implementation is attractive for teams that want a compiled gateway layer.
+- Connects gateway traffic with evaluation, experimentation, and optimization workflows.
+
+**Cons**
+
+- Broader than a narrow provider proxy, so adoption may involve more workflow and data-model decisions.
+- Best fit depends on whether the team wants TensorZero's LLMOps platform concepts, not only routing and fallback behavior.
+
 ## Choosing a Gateway
 
 | If you need... | Start with |
@@ -176,6 +199,7 @@ Bifrost is a Go-based AI gateway focused on model routing, load balancing, guard
 | Enterprise API management plus AI gateway features | Kong Gateway |
 | Apache API gateway maturity with AI gateway direction | Apache APISIX |
 | Low-overhead Go model routing and gateway performance | Bifrost |
+| Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 
 ## Evaluation Criteria
 
