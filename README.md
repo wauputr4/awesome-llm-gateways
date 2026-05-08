@@ -21,6 +21,8 @@ LLM gateways sit between applications and model providers. They usually handle p
 | Envoy AI Gateway | [envoyproxy/ai-gateway](https://github.com/envoyproxy/ai-gateway) | Go | Apache-2.0 | Kubernetes/cloud-native teams already aligned with Envoy Gateway. | Built on Envoy Gateway, strong infrastructure pedigree, Kubernetes-native direction. | Younger project than general API gateways; feature surface may be narrower for app-level LLMOps needs. |
 | Higress | [higress-group/higress](https://github.com/higress-group/higress) | Go | Apache-2.0 | Cloud-native API gateway users that want AI gateway capability in one gateway. | AI-native API gateway, Envoy-based, API gateway plus AI routing patterns. | Operational model is closer to full API gateway infrastructure than lightweight app proxy. |
 | Kong Gateway | [Kong/kong](https://github.com/Kong/kong) | Lua | Apache-2.0 | Enterprises that already need API management and want AI gateway features in the same stack. | Mature API gateway, plugin ecosystem, AI gateway and MCP-related features, strong operations story. | Heavier than purpose-built LLM proxies; some advanced workflows may depend on Kong ecosystem/product choices. |
+| Apache APISIX | [apache/apisix](https://github.com/apache/apisix) | Lua | Apache-2.0 | Teams that want a cloud-native API gateway with AI gateway capabilities. | Mature Apache project, API management, Kubernetes ingress, plugins, AI gateway direction. | More general-purpose API gateway than LLM-specific proxy; AI workflows may need plugin/configuration work. |
+| Bifrost | [maximhq/bifrost](https://github.com/maximhq/bifrost) | Go | Apache-2.0 | Teams optimizing for low-overhead model routing and gateway performance. | Go implementation, model routing, load balancing, guardrails, observability and cost-oriented features. | Younger than established API gateways; benchmark and feature claims should be verified in your workload. |
 
 ## Projects
 
@@ -123,6 +125,46 @@ Kong is a mature API gateway that now includes AI gateway and LLM gateway featur
 - Heavier than a purpose-built LLM proxy.
 - Some AI workflows may require adopting broader Kong-specific patterns or products.
 
+### Apache APISIX
+
+- GitHub: [apache/apisix](https://github.com/apache/apisix)
+- Website: [apisix.apache.org](https://apisix.apache.org/)
+- Language: Lua
+- License: Apache-2.0
+
+Apache APISIX is a cloud-native API gateway that also positions itself for AI gateway use cases. It is useful when AI traffic should be governed through a mature API gateway with plugins, ingress support, and API management patterns.
+
+**Pros**
+
+- Mature Apache project with strong API gateway foundations.
+- Apache-2.0 licensed.
+- Good fit for teams that already need API management, ingress, routing, and plugin-based policy enforcement.
+
+**Cons**
+
+- Not as narrowly focused on LLM provider abstraction as LiteLLM or Portkey.
+- AI-specific workflows may require more gateway/plugin configuration and operations expertise.
+
+### Bifrost
+
+- GitHub: [maximhq/bifrost](https://github.com/maximhq/bifrost)
+- Website: [getmaxim.ai/bifrost](https://www.getmaxim.ai/bifrost)
+- Language: Go
+- License: Apache-2.0
+
+Bifrost is a Go-based AI gateway focused on model routing, load balancing, guardrails, observability, cost controls, and low-overhead serving.
+
+**Pros**
+
+- Go runtime is attractive for gateway performance and low-overhead deployment.
+- Apache-2.0 licensed.
+- Focused on practical LLM gateway concerns: routing, load balancing, guardrails, model support, and token/cost management.
+
+**Cons**
+
+- Younger than mature API gateway stacks such as Kong or APISIX.
+- Published performance and feature claims should be validated against your deployment shape, providers, and traffic patterns.
+
 ## Choosing a Gateway
 
 | If you need... | Start with |
@@ -132,6 +174,8 @@ Kong is a mature API gateway that now includes AI gateway and LLM gateway featur
 | Kubernetes-native AI traffic management on Envoy | Envoy AI Gateway |
 | API gateway plus AI gateway in a cloud-native stack | Higress |
 | Enterprise API management plus AI gateway features | Kong Gateway |
+| Apache API gateway maturity with AI gateway direction | Apache APISIX |
+| Low-overhead Go model routing and gateway performance | Bifrost |
 
 ## Evaluation Criteria
 
