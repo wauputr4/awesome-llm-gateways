@@ -6,6 +6,8 @@ LLM gateways sit between applications and model providers. They usually handle p
 
 Related terms include AI gateway, model gateway, inference gateway, LLM proxy, model router, and OpenAI-compatible proxy.
 
+This list prioritizes public repositories that act as gateway, proxy, router, or model-access infrastructure rather than generic SDKs or end-user AI applications.
+
 ## Contents
 
 - [Quick Comparison](#quick-comparison)
@@ -22,6 +24,7 @@ Related terms include AI gateway, model gateway, inference gateway, LLM proxy, m
 | Portkey Gateway | [Portkey-AI/gateway](https://github.com/Portkey-AI/gateway) | TypeScript | MIT | Product teams that want gateway plus guardrails and model routing. | Friendly API, many model integrations, guardrails, model router, permissive license. | Some ecosystem value is tied to Portkey's broader platform; self-hosting depth should be checked for each feature. |
 | Envoy AI Gateway | [envoyproxy/ai-gateway](https://github.com/envoyproxy/ai-gateway) | Go | Apache-2.0 | Kubernetes/cloud-native teams already aligned with Envoy Gateway. | Built on Envoy Gateway, strong infrastructure pedigree, Kubernetes-native direction. | Younger project than general API gateways; feature surface may be narrower for app-level LLMOps needs. |
 | Higress | [higress-group/higress](https://github.com/higress-group/higress) | Go | Apache-2.0 | Cloud-native API gateway users that want AI gateway capability in one gateway. | AI-native API gateway, Envoy-based, API gateway plus AI routing patterns. | Operational model is closer to full API gateway infrastructure than lightweight app proxy. |
+| Inference Gateway | [inference-gateway/inference-gateway](https://github.com/inference-gateway/inference-gateway) | Go | MIT | Teams that want a self-hosted, lightweight gateway for multiple hosted and local providers. | Unified proxy for providers such as OpenAI, Ollama, Groq, Cohere, Anthropic, Cloudflare, and DeepSeek; streaming, MCP, OpenTelemetry, Docker, and Kubernetes support. | Routing model is environment/configuration driven; teams needing advanced policy, spend governance, or full API management may need surrounding tooling. |
 | Kong Gateway | [Kong/kong](https://github.com/Kong/kong) | Lua | Apache-2.0 | Enterprises that already need API management and want AI gateway features in the same stack. | Mature API gateway, plugin ecosystem, AI gateway and MCP-related features, strong operations story. | Heavier than purpose-built LLM proxies; some advanced workflows may depend on Kong ecosystem/product choices. |
 | Apache APISIX | [apache/apisix](https://github.com/apache/apisix) | Lua | Apache-2.0 | Teams that want a cloud-native API gateway with AI gateway capabilities. | Mature Apache project, API management, Kubernetes ingress, plugins, AI gateway direction. | More general-purpose API gateway than LLM-specific proxy; AI workflows may need plugin/configuration work. |
 | Bifrost | [maximhq/bifrost](https://github.com/maximhq/bifrost) | Go | Apache-2.0 | Teams optimizing for low-overhead model routing and gateway performance. | Go implementation, model routing, load balancing, guardrails, observability and cost-oriented features. | Younger than established API gateways; benchmark and feature claims should be verified in your workload. |
@@ -107,6 +110,26 @@ Higress is an AI-native API gateway with cloud-native and Envoy-based roots.
 
 - More infrastructure-heavy than a simple LLM provider proxy.
 - Best fit depends on whether the team wants to operate a full API gateway.
+
+### Inference Gateway
+
+- GitHub: [inference-gateway/inference-gateway](https://github.com/inference-gateway/inference-gateway)
+- Language: Go
+- License: MIT
+
+Inference Gateway is a self-hosted proxy server for accessing multiple language model APIs through a unified interface. It supports hosted providers and local options, with features such as streaming responses, MCP integration, OpenTelemetry, Docker deployment, and Kubernetes deployment examples.
+
+**Pros**
+
+- MIT licensed.
+- Go implementation with a lightweight self-hosted deployment model.
+- Supports multiple provider targets, including OpenAI, Ollama, Groq, Cohere, Anthropic, Cloudflare, and DeepSeek.
+- Includes practical production-facing features such as streaming, TLS/timeouts, OpenTelemetry, Docker, and Kubernetes support.
+
+**Cons**
+
+- Advanced governance, budget management, and policy workflows appear less central than in larger API gateway or LLMOps platforms.
+- Provider routing is primarily configuration and model-name driven, so teams should validate it against their desired routing and fallback behavior.
 
 ### Kong Gateway
 
@@ -196,6 +219,7 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 | Guardrails and app-team-friendly model routing | Portkey Gateway |
 | Kubernetes-native AI traffic management on Envoy | Envoy AI Gateway |
 | API gateway plus AI gateway in a cloud-native stack | Higress |
+| Lightweight self-hosted proxy for hosted and local providers | Inference Gateway |
 | Enterprise API management plus AI gateway features | Kong Gateway |
 | Apache API gateway maturity with AI gateway direction | Apache APISIX |
 | Low-overhead Go model routing and gateway performance | Bifrost |
