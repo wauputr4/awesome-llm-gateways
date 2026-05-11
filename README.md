@@ -4,7 +4,7 @@ A curated list of open-source LLM gateways, AI gateways, and model-routing proxi
 
 LLM gateways sit between applications and model providers. They usually handle provider routing, retries, fallbacks, observability, budgets, access control, guardrails, and OpenAI-compatible API translation.
 
-Related terms include AI gateway, model gateway, inference gateway, LLM proxy, model router, semantic router, zero-trust LLM gateway, and OpenAI-compatible proxy.
+Related terms include AI gateway, model gateway, inference gateway, LLM proxy, model router, semantic router, zero-trust LLM gateway, coding-tool AI router, and OpenAI-compatible proxy.
 
 This list prioritizes public repositories that act as gateway, proxy, router, or model-access infrastructure rather than generic SDKs or end-user AI applications.
 
@@ -22,6 +22,7 @@ This list prioritizes public repositories that act as gateway, proxy, router, or
 | --- | --- | --- | --- | --- | --- | --- |
 | LiteLLM | [BerriAI/litellm](https://github.com/BerriAI/litellm) | Python | Other | Teams that want broad provider coverage and OpenAI-compatible routing quickly. | 100+ provider support, cost tracking, load balancing, logging, guardrails, active ecosystem. | Python proxy can be less attractive for very low-latency edge gateway use cases; license should be reviewed before commercial embedding. |
 | Portkey Gateway | [Portkey-AI/gateway](https://github.com/Portkey-AI/gateway) | TypeScript | MIT | Product teams that want gateway plus guardrails and model routing. | Friendly API, many model integrations, guardrails, model router, permissive license. | Some ecosystem value is tied to Portkey's broader platform; self-hosting depth should be checked for each feature. |
+| OmniRoute | [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | TypeScript | MIT | Developers and teams that want a local or hosted AI router for many providers and coding tools through one endpoint. | OpenAI-compatible APIs, broad provider catalog, multiple routing strategies, automatic fallback, prompt compression, format translation, MCP/A2A integrations, and desktop/PWA options. | Very broad product surface with marketing-heavy claims; production maturity, security model, and provider behavior should be validated carefully. |
 | Envoy AI Gateway | [envoyproxy/ai-gateway](https://github.com/envoyproxy/ai-gateway) | Go | Apache-2.0 | Kubernetes/cloud-native teams already aligned with Envoy Gateway. | Built on Envoy Gateway, strong infrastructure pedigree, Kubernetes-native direction. | Younger project than general API gateways; feature surface may be narrower for app-level LLMOps needs. |
 | Higress | [higress-group/higress](https://github.com/higress-group/higress) | Go | Apache-2.0 | Cloud-native API gateway users that want AI gateway capability in one gateway. | AI-native API gateway, Envoy-based, API gateway plus AI routing patterns. | Operational model is closer to full API gateway infrastructure than lightweight app proxy. |
 | Inference Gateway | [inference-gateway/inference-gateway](https://github.com/inference-gateway/inference-gateway) | Go | MIT | Teams that want a self-hosted, lightweight gateway for multiple hosted and local providers. | Unified proxy for providers such as OpenAI, Ollama, Groq, Cohere, Anthropic, Cloudflare, and DeepSeek; streaming, MCP, OpenTelemetry, Docker, and Kubernetes support. | Routing model is environment/configuration driven; teams needing advanced policy, spend governance, or full API management may need surrounding tooling. |
@@ -71,6 +72,28 @@ Portkey Gateway focuses on AI gateway routing, guardrails, and model access thro
 
 - Some capabilities may be most useful alongside Portkey's hosted or broader platform components.
 - Teams should verify self-hosted behavior for the exact guardrails, observability, and routing features they need.
+
+### OmniRoute
+
+- GitHub: [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute)
+- Website: [omniroute.online](https://omniroute.online)
+- Language: TypeScript
+- License: MIT
+
+OmniRoute is a TypeScript AI gateway and router that exposes OpenAI-compatible endpoints for many providers, coding agents, and multimodal APIs. It combines provider routing, automatic fallback, prompt compression, format translation, MCP/A2A integrations, and app surfaces such as web, desktop, and PWA.
+
+**Pros**
+
+- MIT licensed.
+- Broad provider and tool focus, including OpenAI-compatible clients, Claude Code, Codex, Gemini CLI, Cursor, Cline, OpenClaw, and other coding tools.
+- Supports multiple routing strategies, auto-fallback, prompt compression, format translation, chat/responses/embeddings/images/audio-related APIs, MCP server tooling, and A2A protocol integration.
+- Useful when one local or hosted endpoint should sit in front of many AI subscriptions, API keys, and low-cost or free provider options.
+
+**Cons**
+
+- The project has a very broad surface area, so teams should validate the specific gateway path they need instead of assuming every advertised workflow is production-ready.
+- README and positioning are marketing-heavy; claims around provider count, compression savings, and tool compatibility should be checked against real workloads.
+- More application-like than minimal gateway infrastructure, which may be unnecessary for teams that only need a small reverse proxy or Kubernetes-native gateway.
 
 ### Envoy AI Gateway
 
@@ -239,6 +262,7 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 | --- | --- |
 | Maximum provider breadth and OpenAI-compatible routing | LiteLLM |
 | Guardrails and app-team-friendly model routing | Portkey Gateway |
+| A local or hosted AI router for many coding tools and provider accounts | OmniRoute |
 | Kubernetes-native AI traffic management on Envoy | Envoy AI Gateway |
 | API gateway plus AI gateway in a cloud-native stack | Higress |
 | Lightweight self-hosted proxy for hosted and local providers | Inference Gateway |
