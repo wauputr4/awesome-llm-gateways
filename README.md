@@ -4,7 +4,7 @@ A curated list of open-source LLM gateways, AI gateways, and model-routing proxi
 
 LLM gateways sit between applications and model providers. They usually handle provider routing, retries, fallbacks, observability, budgets, access control, guardrails, and OpenAI-compatible API translation.
 
-Related terms include AI gateway, model gateway, inference gateway, LLM proxy, model router, semantic router, zero-trust LLM gateway, coding-tool AI router, OpenAI-compatible proxy, OpenAI Responses API proxy, provider passthrough gateway, and API format-conversion gateway.
+Related terms include AI gateway, model gateway, inference gateway, LLM proxy, model router, semantic router, zero-trust LLM gateway, coding-tool AI router, OpenAI-compatible proxy, OpenAI Responses API proxy, OpenTelemetry LLM gateway, provider passthrough gateway, and API format-conversion gateway.
 
 This list prioritizes public repositories that act as gateway, proxy, router, or model-access infrastructure rather than generic SDKs or end-user AI applications.
 
@@ -32,6 +32,7 @@ This list prioritizes public repositories that act as gateway, proxy, router, or
 | Kong Gateway | [Kong/kong](https://github.com/Kong/kong) | Lua | Apache-2.0 | Enterprises that already need API management and want AI gateway features in the same stack. | Mature API gateway, plugin ecosystem, AI gateway and MCP-related features, strong operations story. | Heavier than purpose-built LLM proxies; some advanced workflows may depend on Kong ecosystem/product choices. |
 | Apache APISIX | [apache/apisix](https://github.com/apache/apisix) | Lua | Apache-2.0 | Teams that want a cloud-native API gateway with AI gateway capabilities. | Mature Apache project, API management, Kubernetes ingress, plugins, AI gateway direction. | More general-purpose API gateway than LLM-specific proxy; AI workflows may need plugin/configuration work. |
 | Bifrost | [maximhq/bifrost](https://github.com/maximhq/bifrost) | Go | Apache-2.0 | Teams optimizing for low-overhead model routing and gateway performance. | Go implementation, model routing, load balancing, guardrails, observability and cost-oriented features. | Younger than established API gateways; benchmark and feature claims should be verified in your workload. |
+| Traceloop Hub | [traceloop/hub](https://github.com/traceloop/hub) | Rust | Apache-2.0 | Teams that want a high-performance OpenAI-compatible gateway with tracing and metrics built in. | Rust gateway, OpenAI-compatible API, OpenTelemetry tracing, Prometheus metrics, YAML mode, PostgreSQL-backed management mode, and Kubernetes assets. | Provider coverage is narrower than broad aggregators; database mode adds PostgreSQL and management API operations. |
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 
 ## Projects
@@ -281,6 +282,29 @@ Bifrost is a Go-based AI gateway focused on model routing, load balancing, guard
 - Younger than mature API gateway stacks such as Kong or APISIX.
 - Published performance and feature claims should be validated against your deployment shape, providers, and traffic patterns.
 
+### Traceloop Hub
+
+- GitHub: [traceloop/hub](https://github.com/traceloop/hub)
+- Website/docs: [traceloop.com/docs/hub](https://www.traceloop.com/docs/hub)
+- Language: Rust
+- License: Apache-2.0
+
+Traceloop Hub is a Rust-based LLM gateway that exposes an OpenAI-compatible API for multiple providers while centralizing tracing and metrics. It supports simple YAML configuration as well as a PostgreSQL-backed database mode with a management API for dynamic provider, model, and pipeline configuration.
+
+**Pros**
+
+- Apache-2.0 licensed.
+- Rust implementation with async runtime and a gateway-focused deployment model.
+- Built-in OpenTelemetry tracing, Prometheus metrics, health checks, Docker, Helm, and Kubernetes deployment assets.
+- Supports providers such as OpenAI, Anthropic, Azure OpenAI, Google Vertex AI, and AWS Bedrock.
+- Useful when gateway observability and operational telemetry are first-class requirements.
+
+**Cons**
+
+- Provider coverage is narrower than broad aggregation gateways such as LiteLLM, Portkey Gateway, or New API.
+- Database mode introduces PostgreSQL, migrations, and a separate management API surface.
+- Teams should validate pipeline behavior, hot reload, and provider compatibility against their production traffic patterns.
+
 ### TensorZero
 
 - GitHub: [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero)
@@ -317,6 +341,7 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 | Enterprise API management plus AI gateway features | Kong Gateway |
 | Apache API gateway maturity with AI gateway direction | Apache APISIX |
 | Low-overhead Go model routing and gateway performance | Bifrost |
+| OpenAI-compatible gateway traffic with built-in tracing and Prometheus metrics | Traceloop Hub |
 | Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 
 ## Evaluation Criteria
