@@ -4,7 +4,7 @@ A curated list of open-source LLM gateways, AI gateways, and model-routing proxi
 
 LLM gateways sit between applications and model providers. They usually handle provider routing, retries, fallbacks, observability, budgets, access control, guardrails, and OpenAI-compatible API translation.
 
-Related terms include AI gateway, model gateway, inference gateway, LLM proxy, model router, semantic router, zero-trust LLM gateway, coding-tool AI router, OpenAI-compatible proxy, OpenAI Responses API proxy, OpenTelemetry LLM gateway, provider passthrough gateway, and API format-conversion gateway.
+Related terms include AI gateway, model gateway, inference gateway, LLM proxy, model router, semantic router, zero-trust LLM gateway, coding-tool AI router, OpenAI-compatible proxy, OpenAI Responses API proxy, OpenTelemetry LLM gateway, provider passthrough gateway, dashboard-backed LLM gateway, and API format-conversion gateway.
 
 This list prioritizes public repositories that act as gateway, proxy, router, or model-access infrastructure rather than generic SDKs or end-user AI applications.
 
@@ -28,6 +28,7 @@ This list prioritizes public repositories that act as gateway, proxy, router, or
 | Inference Gateway | [inference-gateway/inference-gateway](https://github.com/inference-gateway/inference-gateway) | Go | MIT | Teams that want a self-hosted, lightweight gateway for multiple hosted and local providers. | Unified proxy for providers such as OpenAI, Ollama, Groq, Cohere, Anthropic, Cloudflare, and DeepSeek; streaming, MCP, OpenTelemetry, Docker, and Kubernetes support. | Routing model is environment/configuration driven; teams needing advanced policy, spend governance, or full API management may need surrounding tooling. |
 | GoModel | [ENTERPILOT/GoModel](https://github.com/ENTERPILOT/GoModel) | Go | MIT | Teams that want a lightweight Go gateway with OpenAI-compatible APIs, provider passthrough, and built-in usage visibility. | Supports many hosted and local providers, streaming, Responses API, embeddings, files, batches, observability, guardrails, cost tracking, Docker, and config/env-based setup. | Newer project with a fast-changing provider matrix; advanced enterprise policy and governance depth should be validated against the exact deployment. |
 | New API | [QuantumNous/new-api](https://github.com/QuantumNous/new-api) | Go | AGPL-3.0 | Teams that need a self-hosted AI model hub for key management, quota controls, and cross-format gateway APIs. | OpenAI-compatible, Claude-compatible, Gemini-compatible, Responses, realtime, image/audio/embedding/rerank interfaces, weighted routing, retries, user-level rate limits, Docker, and web UI. | AGPL licensing must be reviewed for hosted/commercial deployments; broad model and billing surface adds more operational policy decisions than a minimal proxy. |
+| LLM Gateway | [theopenco/llmgateway](https://github.com/theopenco/llmgateway) | TypeScript | AGPL-3.0 / Enterprise | Teams that want a self-hosted or hosted OpenAI-compatible gateway with dashboard analytics and key management. | Multi-provider routing, centralized provider keys, usage/cost analytics, performance monitoring, Docker self-hosting, and dashboard/playground apps. | Dual-license model needs review; the monorepo includes several apps and backing services, so it is heavier than a minimal proxy. |
 | OpenZiti LLM Gateway | [openziti/llm-gateway](https://github.com/openziti/llm-gateway) | Go | Apache-2.0 | Teams that need OpenAI-compatible routing across hosted and private inference backends, especially behind NAT or private networks. | Single Go binary, semantic routing, Anthropic translation, virtual API keys, OpenTelemetry metrics, multi-endpoint load balancing, and zrok/OpenZiti zero-trust connectivity. | Early-stage project with a smaller community; provider coverage is narrower than broad aggregation gateways and strongest when its zero-trust networking model is needed. |
 | Kong Gateway | [Kong/kong](https://github.com/Kong/kong) | Lua | Apache-2.0 | Enterprises that already need API management and want AI gateway features in the same stack. | Mature API gateway, plugin ecosystem, AI gateway and MCP-related features, strong operations story. | Heavier than purpose-built LLM proxies; some advanced workflows may depend on Kong ecosystem/product choices. |
 | Apache APISIX | [apache/apisix](https://github.com/apache/apisix) | Lua | Apache-2.0 | Teams that want a cloud-native API gateway with AI gateway capabilities. | Mature Apache project, API management, Kubernetes ingress, plugins, AI gateway direction. | More general-purpose API gateway than LLM-specific proxy; AI workflows may need plugin/configuration work. |
@@ -201,6 +202,28 @@ New API is a self-hosted LLM gateway and AI asset management system for aggregat
 - Broad gateway, billing, user-management, and UI surface can be more operationally complex than a small provider proxy.
 - Some format-conversion paths are documented as partial or in development, so exact API compatibility should be tested before relying on them.
 
+### LLM Gateway
+
+- GitHub: [theopenco/llmgateway](https://github.com/theopenco/llmgateway)
+- Website: [llmgateway.io](https://llmgateway.io)
+- Language: TypeScript
+- License: AGPL-3.0 core / Enterprise features
+
+LLM Gateway is a TypeScript API gateway for routing LLM requests through a unified OpenAI-compatible interface. It supports hosted and self-hosted deployment, centralizes provider API keys, and includes dashboard-oriented usage, cost, and performance analytics.
+
+**Pros**
+
+- Public repository with active development and clear AI gateway positioning.
+- Supports routing requests to multiple LLM providers through one OpenAI-compatible interface.
+- Includes centralized provider key management, token/cost tracking, performance monitoring, dashboard apps, and Docker-based self-hosting.
+- Useful when teams want a gateway plus operational visibility rather than only a thin request proxy.
+
+**Cons**
+
+- Core is AGPL-3.0 while enterprise features use a separate commercial license, so deployment and modification plans need license review.
+- Monorepo includes UI, playground, API, gateway, docs, admin, database, and shared packages, which adds more operational surface than small single-binary gateways.
+- Some advanced billing, retention, organization, and provider-key features are enterprise-scoped, so self-hosted feature boundaries should be checked before adoption.
+
 ### OpenZiti LLM Gateway
 
 - GitHub: [openziti/llm-gateway](https://github.com/openziti/llm-gateway)
@@ -337,6 +360,7 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 | Lightweight self-hosted proxy for hosted and local providers | Inference Gateway |
 | Lightweight Go gateway with OpenAI-compatible APIs, provider passthrough, and cost visibility | GoModel |
 | Self-hosted model hub with key/quota management and cross-format APIs | New API |
+| Dashboard-backed OpenAI-compatible gateway with key management and usage analytics | LLM Gateway |
 | OpenAI-compatible routing to private inference backends across NAT or private networks | OpenZiti LLM Gateway |
 | Enterprise API management plus AI gateway features | Kong Gateway |
 | Apache API gateway maturity with AI gateway direction | Apache APISIX |
