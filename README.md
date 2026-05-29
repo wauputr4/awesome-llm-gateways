@@ -31,6 +31,7 @@ This list prioritizes public repositories that act as gateway, proxy, router, or
 | Inference Gateway | [inference-gateway/inference-gateway](https://github.com/inference-gateway/inference-gateway) | Go | MIT | Teams that want a self-hosted, lightweight gateway for multiple hosted and local providers. | Unified proxy for providers such as OpenAI, Ollama, Groq, Cohere, Anthropic, Cloudflare, and DeepSeek; streaming, MCP, OpenTelemetry, Docker, and Kubernetes support. | Routing model is environment/configuration driven; teams needing advanced policy, spend governance, or full API management may need surrounding tooling. |
 | GoModel | [ENTERPILOT/GoModel](https://github.com/ENTERPILOT/GoModel) | Go | MIT | Teams that want a lightweight Go gateway with OpenAI-compatible APIs, provider passthrough, and built-in usage visibility. | Supports many hosted and local providers, streaming, Responses API, embeddings, files, batches, observability, guardrails, cost tracking, Docker, and config/env-based setup. | Newer project with a fast-changing provider matrix; advanced enterprise policy and governance depth should be validated against the exact deployment. |
 | Proxify | [poixeai/proxify](https://github.com/poixeai/proxify) | TypeScript / Go | MIT | Teams that want a self-hosted AI API reverse proxy with simple path-based upstream routing and streaming optimizations. | Route-prefix forwarding for OpenAI, Claude, Gemini, DeepSeek, Azure, and other HTTP APIs; stream smoothing, heartbeat keepalive, tail acceleration, hot-reloaded routes, Docker, and dashboard. | More reverse proxy than full LLMOps gateway; advanced model policy, budget controls, and provider-native format conversion need external tooling or custom routing rules. |
+| AI Model Gateway | [SSC-STUDIO/Ai-Model-Gateway](https://github.com/SSC-STUDIO/Ai-Model-Gateway) | Go | MIT | Teams that want a self-hosted LLM operations gateway with local config publishing, telemetry, fallback, and rollback workflows. | OpenAI/Anthropic/Responses-compatible entry points, provider fallback, health checks, rate limits, telemetry, benchmarking, diagnostics, config publish/rollback, and Admin UI. | Smaller and newer project than established gateway stacks; teams should validate provider coverage, multi-tenant governance, and operational maturity before production use. |
 | LLM0 Gateway | [mrmushfiq/llm0-gateway](https://github.com/mrmushfiq/llm0-gateway) | Go | MIT | Teams that want a self-hosted Go gateway with failover, semantic caching, and spend controls. | OpenAI-compatible chat endpoint, OpenAI/Anthropic/Gemini/Ollama routing, exact and semantic caching, streaming, per-key rate limits, per-customer spend caps, cost tracking, Redis/Postgres, and Docker Compose. | Very new project with a small community; provider coverage is narrower than broad aggregators and semantic caching adds Postgres/pgvector plus embedding-service operations. |
 | pLLM | [andreimerfu/pllm](https://github.com/andreimerfu/pllm) | Go | MIT | Teams that want a Go OpenAI-compatible gateway with route-based model orchestration, failover, and Kubernetes deployment options. | Virtual model routes, priority/latency/weighted/random routing, automatic failover, multi-key load balancing, caching, budgets, Prometheus metrics, OpenTelemetry, Docker, and Helm support. | Newer project with ambitious production claims; teams should validate provider adapters, dashboard/admin APIs, and Redis-backed routing behavior against real traffic. |
 | New API | [QuantumNous/new-api](https://github.com/QuantumNous/new-api) | Go | AGPL-3.0 | Teams that need a self-hosted AI model hub for key management, quota controls, and cross-format gateway APIs. | OpenAI-compatible, Claude-compatible, Gemini-compatible, Responses, realtime, image/audio/embedding/rerank interfaces, weighted routing, retries, user-level rate limits, Docker, and web UI. | AGPL licensing must be reviewed for hosted/commercial deployments; broad model and billing surface adds more operational policy decisions than a minimal proxy. |
@@ -278,6 +279,29 @@ Proxify is a self-hosted AI API reverse proxy gateway. It routes provider traffi
 - More of a configurable reverse proxy than a full model-routing or LLMOps gateway.
 - Advanced budget enforcement, tenant isolation, provider health scoring, and observability need surrounding tooling or custom extensions.
 - API compatibility depends on upstream route configuration, so teams should test each provider path and model rewrite rule directly.
+
+### AI Model Gateway
+
+- GitHub: [SSC-STUDIO/Ai-Model-Gateway](https://github.com/SSC-STUDIO/Ai-Model-Gateway)
+- Website/docs: [ssc-studio.github.io/Ai-Model-Gateway](https://ssc-studio.github.io/Ai-Model-Gateway/)
+- Language: Go
+- License: MIT
+
+AI Model Gateway is a self-hosted LLM operations gateway that combines OpenAI-compatible, Anthropic-compatible, and OpenAI Responses-compatible entry points with provider routing, fallback, rate limiting, telemetry, benchmarking, diagnostics, config publishing, and rollback workflows. It is designed for teams that want provider keys, routing policy, telemetry, and operational controls inside their own environment rather than a hosted broker.
+
+**Pros**
+
+- MIT licensed.
+- Go runtime with separate data, control, and telemetry planes supervised by a local operations command.
+- Supports provider fallback, health checks, cooldown-oriented operations, local rate limits, request telemetry, cost signals, request logs, and benchmark workflows.
+- Admin and CLI workflows cover config preview, diff, publish, audit, rollback, provider probes, diagnostics, and update/rollback operations.
+- Useful when the gateway itself is part of day-2 operations, not only an OpenAI-compatible request forwarding layer.
+
+**Cons**
+
+- Smaller and newer project than established gateways such as LiteLLM, Portkey Gateway, Kong, or APISIX.
+- Provider breadth and enterprise governance depth are narrower than broad hosted or platform-style gateways.
+- Teams should validate self-hosting, security posture, provider adapters, and UI workflows against real traffic before production use.
 
 ### LLM0 Gateway
 
@@ -597,6 +621,7 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 | Lightweight self-hosted proxy for hosted and local providers | Inference Gateway |
 | Lightweight Go gateway with OpenAI-compatible APIs, provider passthrough, and cost visibility | GoModel |
 | Self-hosted AI API reverse proxy with route-prefix forwarding and streaming optimization | Proxify |
+| Self-hosted operations gateway with config publishing, rollback, provider fallback, telemetry, and Admin UI | AI Model Gateway |
 | Self-hosted Go gateway with semantic caching, failover, and spend caps | LLM0 Gateway |
 | Go gateway with virtual model routes, failover, and Kubernetes deployment options | pLLM |
 | Self-hosted model hub with key/quota management and cross-format APIs | New API |
