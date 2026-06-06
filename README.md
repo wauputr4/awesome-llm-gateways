@@ -77,6 +77,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | Traceloop Hub | [traceloop/hub](https://github.com/traceloop/hub) | Rust | Apache-2.0 | Teams that want a high-performance OpenAI-compatible gateway with tracing and metrics built in. | Rust gateway, OpenAI-compatible API, OpenTelemetry tracing, Prometheus metrics, YAML mode, PostgreSQL-backed management mode, and Kubernetes assets. | Provider coverage is narrower than broad aggregators; database mode adds PostgreSQL and management API operations. |
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
+| FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
 
 <a id="projects"></a>
 
@@ -725,6 +726,28 @@ CoderPlan is a managed LLM API gateway for developers who want one hosted endpoi
 - Less suitable for teams that require self-hosting, source-code review, or full infrastructure control.
 - Regional edge-node and model-availability claims should be verified against the current service documentation.
 
+### FerryAPI
+
+- Website: [ferryapi.io](https://www.ferryapi.io/)
+- Docs: [ferryapi.io/docs](https://www.ferryapi.io/docs)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+FerryAPI is a managed OpenAI-compatible AI API gateway for production applications. It focuses on hosted gateway access, prepaid usage-based billing, developer API key management, and lower-cost model access rather than self-hosted open-source infrastructure.
+
+**Pros**
+
+- OpenAI-compatible API surface for applications that already use OpenAI-style clients.
+- Public documentation and developer setup path.
+- Hosted deployment can reduce self-hosting overhead for teams that prefer managed gateway infrastructure.
+- Developer API key management and prepaid usage-based billing can be useful for production access control and spend planning.
+
+**Cons**
+
+- Proprietary hosted service rather than an open-source repository, so teams cannot self-host or audit source code from this listing.
+- Pricing, provider behavior, model availability, data handling, and service terms should be validated directly before production adoption.
+- Less suitable for teams that need Kubernetes-native deployment, private-network routing, or full infrastructure ownership.
+
 <a id="choosing-a-gateway"></a>
 
 ## 🧭 Choosing a Gateway
@@ -763,6 +786,7 @@ These are **starting points**, not final recommendations. Validate each candidat
 | OpenAI-compatible gateway traffic with built-in tracing and Prometheus metrics | Traceloop Hub |
 | Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 | Managed coding-tool gateway without self-hosting | CoderPlan |
+| Managed OpenAI-compatible gateway for production apps | FerryAPI |
 
 <a id="evaluation-criteria"></a>
 
