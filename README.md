@@ -3,41 +3,47 @@
 [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
 [![License: CC0-1.0](https://img.shields.io/badge/license-CC0--1.0-lightgrey.svg)](LICENSE)
 
-A curated comparison of open-source LLM gateways, AI gateways, model routers, and provider proxies.
+A curated comparison of **open-source LLM gateways**, **AI gateways**, **model routers**, and **provider proxies**.
 
-LLM gateways sit between applications and model providers. They usually handle provider routing, retries, fallbacks, observability, budgets, access control, guardrails, and OpenAI-compatible API translation.
+**LLM gateways** sit between applications and model providers. They usually handle **provider routing**, **retries/fallbacks**, **observability**, **budgets**, **access control**, **guardrails**, and **OpenAI-compatible API translation**.
 
-## How to Use This List
+<a id="how-to-use-this-list"></a>
+
+## 🚀 How to Use This List
 
 - **Start with [Quick Comparison](#quick-comparison)** for a fast scan of fit, strengths, and trade-offs.
 - **Use [Choosing a Gateway](#choosing-a-gateway)** when you already know the capability you need.
 - **Read [Evaluation Criteria](#evaluation-criteria)** before testing a gateway in production.
 - **Check each upstream repository** for current license, maturity, deployment docs, and provider behavior before adopting it.
 
-## Scope
+<a id="scope"></a>
 
-This list prioritizes public repositories that act as gateway, proxy, router, or model-access infrastructure rather than generic SDKs or end-user AI applications.
+## 🎯 Scope
+
+This list prioritizes public repositories that act as **gateway**, **proxy**, **router**, or **model-access infrastructure** rather than generic SDKs or end-user AI applications.
 
 <details>
-<summary>Related terms and search keywords</summary>
+<summary>🔎 Related terms and search keywords</summary>
 
 AI gateway, model gateway, inference gateway, agent gateway, agentic AI gateway, agentic data-plane gateway, bidirectional AI gateway, spec-first AI gateway, OpenAPI-to-MCP gateway, MCP gateway, A2A gateway, LLM proxy, AI reverse proxy, model router, semantic router, prompt-routing AI gateway, adaptive-routing LLM gateway, zero-trust LLM gateway, coding-tool AI router, OpenAI-compatible proxy, Anthropic-compatible proxy, OpenAI Responses API proxy, OpenTelemetry LLM gateway, observability-first AI gateway, provider passthrough gateway, streaming-optimized AI gateway, semantic-cache AI gateway, dashboard-backed LLM gateway, key-management LLM gateway, API-key-rotation LLM gateway, quota-management AI gateway, budget-aware AI router, spend-cap LLM gateway, Python/FastAPI LLM proxy, importable LLM gateway, LLM API redistribution gateway, and API format-conversion gateway.
 
 </details>
 
-## Contents
+## 📚 Contents
 
-- [How to Use This List](#how-to-use-this-list)
-- [Scope](#scope)
-- [Quick Comparison](#quick-comparison)
-- [Projects](#projects)
-- [Choosing a Gateway](#choosing-a-gateway)
-- [Evaluation Criteria](#evaluation-criteria)
-- [Contributing](#contributing)
+- [🚀 How to Use This List](#how-to-use-this-list)
+- [🎯 Scope](#scope)
+- [⚡ Quick Comparison](#quick-comparison)
+- [🧩 Projects](#projects)
+- [🧭 Choosing a Gateway](#choosing-a-gateway)
+- [✅ Evaluation Criteria](#evaluation-criteria)
+- [🤝 Contributing](#contributing)
 
-## Quick Comparison
+<a id="quick-comparison"></a>
 
-Use this table for first-pass filtering. The detailed project notes below add context, caveats, and adoption checks.
+## ⚡ Quick Comparison
+
+Use this table for **first-pass filtering**. The detailed project notes below add **context**, **caveats**, and **adoption checks**.
 
 | Project | Repo | Language | License | Best Fit | Main Strengths | Trade-offs |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -72,9 +78,11 @@ Use this table for first-pass filtering. The detailed project notes below add co
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 
-## Projects
+<a id="projects"></a>
 
-Each entry follows the same shape: repository links first, then a short factual summary, practical pros, and adoption caveats.
+## 🧩 Projects
+
+Each entry follows the same shape: **repository links first**, then a short factual summary, practical **pros**, and adoption **caveats**.
 
 ### LiteLLM
 
@@ -717,9 +725,11 @@ CoderPlan is a managed LLM API gateway for developers who want one hosted endpoi
 - Less suitable for teams that require self-hosting, source-code review, or full infrastructure control.
 - Regional edge-node and model-availability claims should be verified against the current service documentation.
 
-## Choosing a Gateway
+<a id="choosing-a-gateway"></a>
 
-These are starting points, not final recommendations. Validate each candidate against your traffic pattern, compliance needs, and deployment model.
+## 🧭 Choosing a Gateway
+
+These are **starting points**, not final recommendations. Validate each candidate against your **traffic pattern**, **compliance needs**, and **deployment model**.
 
 | If you need... | Start with |
 | --- | --- |
@@ -754,9 +764,11 @@ These are starting points, not final recommendations. Validate each candidate ag
 | Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 | Managed coding-tool gateway without self-hosting | CoderPlan |
 
-## Evaluation Criteria
+<a id="evaluation-criteria"></a>
 
-Before adopting a gateway, compare candidates across:
+## ✅ Evaluation Criteria
+
+Before adopting a gateway, compare candidates across these practical dimensions:
 
 - Provider coverage and OpenAI-compatible API support.
 - API format conversion needs, such as OpenAI-compatible, Claude-compatible, Gemini-compatible, or Responses API translation.
@@ -772,9 +784,11 @@ Before adopting a gateway, compare candidates across:
 - License and commercial-use constraints.
 - Whether GitHub license metadata, README badges, and checked-in license files agree.
 
-## Contributing
+<a id="contributing"></a>
 
-Contributions are welcome. Please keep entries factual, comparable, and easy to scan:
+## 🤝 Contributing
+
+Contributions are welcome. Please keep entries **factual**, **comparable**, and **easy to scan**:
 
 - Link to the GitHub repository.
 - Include license, primary language, and deployment model when known.
@@ -783,6 +797,8 @@ Contributions are welcome. Please keep entries factual, comparable, and easy to 
 - Add comparison notes when a project overlaps with existing entries.
 - Hosted/SaaS gateways that serve similar routing and access functions are also welcome, noted as such.
 
-## License
+<a id="license"></a>
+
+## 📄 License
 
 This list is released under [CC0-1.0](LICENSE).
