@@ -11,7 +11,7 @@ Good entries include:
 - Website or documentation link, when useful.
 - License.
 - Primary language or stack.
-- Short factual description.
+- Short factual description (including the deployment model, such as self-hosted, library, container, or Kubernetes-native).
 - Practical strengths.
 - Practical trade-offs or limitations.
 
