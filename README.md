@@ -1,15 +1,34 @@
 # Awesome LLM Gateways
 
-A curated list of open-source LLM gateways, AI gateways, and model-routing proxies.
+[![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
+[![License: CC0-1.0](https://img.shields.io/badge/license-CC0--1.0-lightgrey.svg)](LICENSE)
+
+A curated comparison of open-source LLM gateways, AI gateways, model routers, and provider proxies.
 
 LLM gateways sit between applications and model providers. They usually handle provider routing, retries, fallbacks, observability, budgets, access control, guardrails, and OpenAI-compatible API translation.
 
-Related terms include AI gateway, model gateway, inference gateway, agent gateway, agentic AI gateway, agentic data-plane gateway, bidirectional AI gateway, spec-first AI gateway, OpenAPI-to-MCP gateway, MCP gateway, A2A gateway, LLM proxy, AI reverse proxy, model router, semantic router, prompt-routing AI gateway, adaptive-routing LLM gateway, zero-trust LLM gateway, coding-tool AI router, OpenAI-compatible proxy, Anthropic-compatible proxy, OpenAI Responses API proxy, OpenTelemetry LLM gateway, observability-first AI gateway, provider passthrough gateway, streaming-optimized AI gateway, semantic-cache AI gateway, dashboard-backed LLM gateway, key-management LLM gateway, API-key-rotation LLM gateway, quota-management AI gateway, budget-aware AI router, spend-cap LLM gateway, Python/FastAPI LLM proxy, importable LLM gateway, LLM API redistribution gateway, and API format-conversion gateway.
+## How to Use This List
+
+- **Start with [Quick Comparison](#quick-comparison)** for a fast scan of fit, strengths, and trade-offs.
+- **Use [Choosing a Gateway](#choosing-a-gateway)** when you already know the capability you need.
+- **Read [Evaluation Criteria](#evaluation-criteria)** before testing a gateway in production.
+- **Check each upstream repository** for current license, maturity, deployment docs, and provider behavior before adopting it.
+
+## Scope
 
 This list prioritizes public repositories that act as gateway, proxy, router, or model-access infrastructure rather than generic SDKs or end-user AI applications.
 
+<details>
+<summary>Related terms and search keywords</summary>
+
+AI gateway, model gateway, inference gateway, agent gateway, agentic AI gateway, agentic data-plane gateway, bidirectional AI gateway, spec-first AI gateway, OpenAPI-to-MCP gateway, MCP gateway, A2A gateway, LLM proxy, AI reverse proxy, model router, semantic router, prompt-routing AI gateway, adaptive-routing LLM gateway, zero-trust LLM gateway, coding-tool AI router, OpenAI-compatible proxy, Anthropic-compatible proxy, OpenAI Responses API proxy, OpenTelemetry LLM gateway, observability-first AI gateway, provider passthrough gateway, streaming-optimized AI gateway, semantic-cache AI gateway, dashboard-backed LLM gateway, key-management LLM gateway, API-key-rotation LLM gateway, quota-management AI gateway, budget-aware AI router, spend-cap LLM gateway, Python/FastAPI LLM proxy, importable LLM gateway, LLM API redistribution gateway, and API format-conversion gateway.
+
+</details>
+
 ## Contents
 
+- [How to Use This List](#how-to-use-this-list)
+- [Scope](#scope)
 - [Quick Comparison](#quick-comparison)
 - [Projects](#projects)
 - [Choosing a Gateway](#choosing-a-gateway)
@@ -17,6 +36,8 @@ This list prioritizes public repositories that act as gateway, proxy, router, or
 - [Contributing](#contributing)
 
 ## Quick Comparison
+
+Use this table for first-pass filtering. The detailed project notes below add context, caveats, and adoption checks.
 
 | Project | Repo | Language | License | Best Fit | Main Strengths | Trade-offs |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -50,6 +71,8 @@ This list prioritizes public repositories that act as gateway, proxy, router, or
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 
 ## Projects
+
+Each entry follows the same shape: repository links first, then a short factual summary, practical pros, and adoption caveats.
 
 ### LiteLLM
 
@@ -652,6 +675,8 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 
 ## Choosing a Gateway
 
+These are starting points, not final recommendations. Validate each candidate against your traffic pattern, compliance needs, and deployment model.
+
 | If you need... | Start with |
 | --- | --- |
 | Maximum provider breadth and OpenAI-compatible routing | LiteLLM |
@@ -685,7 +710,7 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 
 ## Evaluation Criteria
 
-When comparing LLM gateways, check:
+Before adopting a gateway, compare candidates across:
 
 - Provider coverage and OpenAI-compatible API support.
 - API format conversion needs, such as OpenAI-compatible, Claude-compatible, Gemini-compatible, or Responses API translation.
@@ -703,7 +728,7 @@ When comparing LLM gateways, check:
 
 ## Contributing
 
-Contributions are welcome. Please keep entries factual and useful:
+Contributions are welcome. Please keep entries factual, comparable, and easy to scan:
 
 - Link to the GitHub repository.
 - Include license, primary language, and deployment model when known.

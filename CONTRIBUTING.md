@@ -1,22 +1,23 @@
 # Contributing
 
-Thanks for improving Awesome LLM Gateways.
+Thanks for improving **Awesome LLM Gateways**. The goal is to keep the list factual, comparable, and easy for engineers to scan.
 
-## Entry Guidelines
+## What to Add
 
 Good entries include:
 
 - Project name.
 - GitHub repository link.
+- Website or documentation link, when useful.
 - License.
 - Primary language or stack.
-- Short description.
+- Short factual description.
 - Practical strengths.
 - Practical trade-offs or limitations.
 
-Please avoid pure marketing copy. The goal is to help engineers compare gateway options quickly.
+Please avoid pure marketing copy. Prefer verifiable claims that help readers compare gateway options quickly.
 
-## Suggested Format
+## Suggested Entry Format
 
 ```md
 ### Project Name
@@ -37,11 +38,13 @@ Short factual summary.
 - ...
 ```
 
-## Pull Requests
+## Pull Request Checklist
 
 Before opening a PR:
 
 - Check whether the project is already listed.
-- Keep descriptions concise.
-- Add comparison notes when relevant.
-- Confirm the repository is public and actively useful.
+- Confirm the repository is public and relevant to LLM gateway, AI gateway, proxy, or model-routing infrastructure.
+- Keep descriptions concise and written in English.
+- Add comparison notes when a project overlaps with existing entries.
+- Verify license, primary language, and deployment model from the upstream repository.
+- Avoid unverifiable benchmark, savings, or provider-count claims unless the upstream source is clear.
