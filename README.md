@@ -43,7 +43,7 @@ AI gateway, model gateway, inference gateway, agent gateway, agentic AI gateway,
 
 ## ⚡ Quick Comparison
 
-Use this table for **first-pass filtering**. The detailed project notes below add **context**, **caveats**, and **adoption checks**.
+Use this table for **first-pass filtering**. The detailed project notes below add **context**, **caveats**, and **adoption checks**. Hosted/proprietary services are clearly marked and grouped separately from public-repository projects.
 
 | Project | Repo | Language | License | Best Fit | Main Strengths | Trade-offs |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -706,7 +706,11 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 - Broader than a narrow provider proxy, so adoption may involve more workflow and data-model decisions.
 - Best fit depends on whether the team wants TensorZero's LLMOps platform concepts, not only routing and fallback behavior.
 
-### CoderPlan
+### Managed / Hosted Gateways
+
+The entries below are **hosted/proprietary gateway services**, not open-source self-hosted projects. They are included only when they serve similar routing, access, or OpenAI-compatible gateway use cases.
+
+#### CoderPlan
 
 - Website: [coderplan.ai](https://coderplan.ai)
 - Language: Not applicable for the hosted service
@@ -726,7 +730,7 @@ CoderPlan is a managed LLM API gateway for developers who want one hosted endpoi
 - Less suitable for teams that require self-hosting, source-code review, or full infrastructure control.
 - Regional edge-node and model-availability claims should be verified against the current service documentation.
 
-### FerryAPI
+#### FerryAPI
 
 - Website: [ferryapi.io](https://www.ferryapi.io/)
 - Docs: [ferryapi.io/docs](https://www.ferryapi.io/docs)
