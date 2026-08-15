@@ -78,6 +78,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
+| SandBase | [sandbaseai/sandbase-docs](https://github.com/sandbaseai/sandbase-docs) | — | Proprietary service / Apache-2.0 docs | Developers who want managed access to multiple model providers, tool APIs, and reusable agents through one account. | OpenAI-compatible chat endpoint, unified API-key and billing flow, model and tool catalog, managed agent endpoints, schedules, and sessions. | Hosted service rather than a self-hosted gateway; teams should validate current model availability, provider behavior, pricing, data handling, and service terms. |
 
 <a id="projects"></a>
 
@@ -752,6 +753,29 @@ FerryAPI is a managed OpenAI-compatible AI API gateway for production applicatio
 - Pricing, provider behavior, model availability, data handling, and service terms should be validated directly before production adoption.
 - Less suitable for teams that need Kubernetes-native deployment, private-network routing, or full infrastructure ownership.
 
+#### SandBase
+
+- GitHub docs: [sandbaseai/sandbase-docs](https://github.com/sandbaseai/sandbase-docs)
+- Website: [sandbase.ai](https://sandbase.ai)
+- Docs: [docs.sandbase.ai](https://docs.sandbase.ai)
+- Language: Not applicable for the hosted service
+- License: Proprietary service; documentation repository is Apache-2.0
+
+SandBase is a managed AI gateway and agent platform that exposes an OpenAI-compatible chat endpoint alongside a unified API for model, tool, and managed-agent workloads.
+
+**Pros**
+
+- One account and API-key flow covers multiple model providers and tool APIs.
+- OpenAI-compatible chat completions can reduce migration work for applications using OpenAI-style clients.
+- Managed agent endpoints, scheduled deployments, and sessions extend beyond model-only gateway access.
+- Public documentation repository includes API examples, an OpenAPI specification, and agent-readable documentation files.
+
+**Cons**
+
+- Proprietary hosted service rather than a self-hosted gateway, so infrastructure and routing internals are not available for local operation or source review.
+- Teams should validate current model and tool availability, upstream provider behavior, pricing, data handling, regional availability, and service terms before production use.
+- The broad model, tool, and agent surface may be unnecessary for teams that only need a small model reverse proxy.
+
 <a id="choosing-a-gateway"></a>
 
 ## 🧭 Choosing a Gateway
@@ -791,6 +815,7 @@ These are **starting points**, not final recommendations. Validate each candidat
 | Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 | Managed coding-tool gateway without self-hosting | CoderPlan |
 | Managed OpenAI-compatible gateway for production apps | FerryAPI |
+| Managed model, tool, and agent access through one API account | SandBase |
 
 <a id="evaluation-criteria"></a>
 
