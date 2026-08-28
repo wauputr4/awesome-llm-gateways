@@ -54,6 +54,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | A3M Router | [Das-rebel/a3m-router](https://github.com/Das-rebel/a3m-router) | TypeScript | MIT | Teams that want parallel multi-LLM execution with confidence scoring and a small footprint. | Parallel ensemble routing, 47+ providers, semantic cache, circuit breaker, guardrails, and RouteLLM-style classification signals. | Newer project with a smaller community; benchmark, cost-savings, and routing-accuracy claims should be validated on your own workloads. |
 | NadirClaw | [NadirRouter/NadirClaw](https://github.com/NadirRouter/NadirClaw) | Python | MIT | Developers who want a local OpenAI/Anthropic-compatible router that sends simple prompts to cheaper or local models. | Prompt-complexity routing, coding-tool compatibility, OpenAI and Anthropic API surfaces, fallback chains, streaming, cost tracking, budgets, caching, dashboard, and Docker support. | Cost-savings claims and classifier accuracy should be validated on real workloads; local-first routing is less suited to teams that need centralized multi-tenant governance out of the box. |
 | Agentgateway | [agentgateway/agentgateway](https://github.com/agentgateway/agentgateway) | Rust | Apache-2.0 | Platform teams that need agentic AI traffic governance across LLM, MCP, and A2A flows. | OpenAI-compatible LLM routing, MCP and A2A gateway support, budget/spend controls, prompt enrichment, load balancing, failover, guardrails, auth/RBAC, OpenTelemetry, and Kubernetes options. | Broader agentic-proxy scope than a narrow model gateway; teams should validate LLM provider behavior and operational maturity against their own agent/tool traffic. |
+| SandBase CLI | [sandbaseai/cli](https://github.com/sandbaseai/cli) | TypeScript | Apache-2.0 | Developers who want a local MCP bridge and CLI for connecting AI clients to many model APIs. | One command, OAuth-backed access, rollback support, and a unified interface to 2,000+ models and APIs. | Depends on upstream model/API availability and the SandBase service; it is a client-side MCP bridge rather than a general-purpose reverse proxy. |
 | Plano | [katanemo/plano](https://github.com/katanemo/plano) | Rust | Apache-2.0 | Teams building agentic applications that want an out-of-process proxy/data plane for orchestration, LLM routing, safety, and traces. | Envoy-rooted Rust proxy, OpenAI-compatible agent endpoints, semantic model aliases/preferences, guardrail filter chains, OpenTelemetry traces/metrics, YAML configuration, and hosted/local routing-model options. | Broader agentic-app platform than a minimal provider proxy; teams should validate routing-model dependency, local model setup, and production operations for their deployment. |
 | Barbacane | [barbacane-dev/barbacane](https://github.com/barbacane-dev/barbacane) | Rust | AGPL-3.0 | API/platform teams that want one spec-first gateway for outbound LLM calls and inbound MCP tool exposure. | OpenAI-compatible LLM dispatcher, OpenAI/Anthropic/Ollama provider fallback, OpenAPI-to-MCP exposure, token limits, prompt/response guards, Prometheus metrics, OpenTelemetry traces, and WASM plugin model. | AGPL/commercial licensing needs review; broader API gateway architecture may be more than teams need for a simple provider proxy. |
 | Envoy AI Gateway | [envoyproxy/ai-gateway](https://github.com/envoyproxy/ai-gateway) | Go | Apache-2.0 | Kubernetes/cloud-native teams already aligned with Envoy Gateway. | Built on Envoy Gateway, strong infrastructure pedigree, Kubernetes-native direction. | Younger project than general API gateways; feature surface may be narrower for app-level LLMOps needs. |
@@ -84,6 +85,27 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 ## 🧩 Projects
 
 Each entry follows the same shape: **repository links first**, then a short factual summary, practical **pros**, and adoption **caveats**.
+
+### SandBase CLI
+
+- GitHub: [sandbaseai/cli](https://github.com/sandbaseai/cli)
+- Website/docs: [sandbase.ai/docs](https://www.sandbase.ai/docs/getting-started/)
+- Language: TypeScript
+- License: Apache-2.0
+- Deployment: Local CLI and MCP bridge
+
+SandBase CLI is an open-source command-line tool and local MCP server that connects supported AI clients to 2,000+ model APIs through one interface.
+
+**Pros**
+
+- One local bridge can be used by multiple AI clients instead of configuring each provider separately.
+- OAuth and rollback workflows are documented in the upstream project.
+- Official MCP Registry listing and Apache-2.0 licensing provide clear discovery and reuse signals.
+
+**Cons**
+
+- Model availability, latency, and API behavior depend on the upstream providers and service configuration.
+- It is focused on client-side MCP/model access, so teams needing ingress governance, tenant policy, or OpenAI-compatible reverse-proxy endpoints may need a separate gateway.
 
 ### LiteLLM
 
