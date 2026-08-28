@@ -78,6 +78,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
+| XiuRouter | [router.xiu.ai](https://router.xiu.ai/) | — | Proprietary | Developers and teams that need managed model access for coding agents and applications through several common API protocols. | OpenAI Responses and Chat Completions, Anthropic Messages, Gemini GenerateContent, scoped API keys, usage-based pricing, request usage records, and agent setup guides. | Hosted service (not open-source) with no automatic provider fallback; teams should validate current model availability, pricing, provider behavior, data handling, and service terms. |
 
 <a id="projects"></a>
 
@@ -752,6 +753,29 @@ FerryAPI is a managed OpenAI-compatible AI API gateway for production applicatio
 - Pricing, provider behavior, model availability, data handling, and service terms should be validated directly before production adoption.
 - Less suitable for teams that need Kubernetes-native deployment, private-network routing, or full infrastructure ownership.
 
+#### XiuRouter
+
+- Website: [router.xiu.ai](https://router.xiu.ai/)
+- Docs: [docs.xiu.ai/router](https://docs.xiu.ai/router/)
+- Pricing: [router.xiu.ai/pricing](https://router.xiu.ai/pricing)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+XiuRouter is a managed LLM API gateway for applications and coding agents. It exposes protocol-specific endpoints for OpenAI Responses and Chat Completions, Anthropic Messages, and Gemini GenerateContent.
+
+**Pros**
+
+- Supports several common API protocols without requiring every client to use the same request format.
+- Scoped API keys, usage-based model pricing, and request usage records provide basic access and spend visibility.
+- Public setup guides cover Codex, Claude Code, Cline, Cursor, OpenCode, OpenClaw, Vercel AI SDK, and other agent or application clients.
+- Public documentation covers protocol boundaries, model and pricing checks, errors, retries, and production preparation.
+
+**Cons**
+
+- Proprietary hosted service rather than an open-source repository, so teams cannot self-host or audit the gateway source code from this listing.
+- XiuRouter does not provide automatic provider fallback; applications that require fallback should implement and test their own policy.
+- Current model availability, provider behavior, pricing, data handling, regional availability, and service terms should be validated directly before production adoption.
+
 <a id="choosing-a-gateway"></a>
 
 ## 🧭 Choosing a Gateway
@@ -791,6 +815,7 @@ These are **starting points**, not final recommendations. Validate each candidat
 | Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 | Managed coding-tool gateway without self-hosting | CoderPlan |
 | Managed OpenAI-compatible gateway for production apps | FerryAPI |
+| Managed multi-protocol model access for coding agents and applications | XiuRouter |
 
 <a id="evaluation-criteria"></a>
 
