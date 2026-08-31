@@ -76,6 +76,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | Bifrost | [maximhq/bifrost](https://github.com/maximhq/bifrost) | Go | Apache-2.0 | Teams optimizing for low-overhead model routing and gateway performance. | Go implementation, model routing, load balancing, guardrails, observability and cost-oriented features. | Younger than established API gateways; benchmark and feature claims should be verified in your workload. |
 | Traceloop Hub | [traceloop/hub](https://github.com/traceloop/hub) | Rust | Apache-2.0 | Teams that want a high-performance OpenAI-compatible gateway with tracing and metrics built in. | Rust gateway, OpenAI-compatible API, OpenTelemetry tracing, Prometheus metrics, YAML mode, PostgreSQL-backed management mode, and Kubernetes assets. | Provider coverage is narrower than broad aggregators; database mode adds PostgreSQL and management API operations. |
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
+| vmr | [bigfatsea/vmr](https://github.com/bigfatsea/vmr) | Go | MIT | Teams running AI agents unattended that want transparent routing, failover, and forensic audit without code changes. | Single ~15MB Go binary with no database, byte-faithful OpenAI/Anthropic/Responses passthrough, error-class failover, session-sticky prompt cache protection, 1-click replay, agent task analysis, built-in web dashboard. | Younger project with a small community; cost-savings and reliability claims should be validated on your own workloads. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
 
@@ -705,6 +706,25 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 
 - Broader than a narrow provider proxy, so adoption may involve more workflow and data-model decisions.
 - Best fit depends on whether the team wants TensorZero's LLMOps platform concepts, not only routing and fallback behavior.
+
+### vmr
+
+- GitHub: [bigfatsea/vmr](https://github.com/bigfatsea/vmr)
+- Language: Go
+- License: MIT
+
+vmr is a single-binary router and flight recorder for AI agents that run unattended. One stable virtual model name hides every provider, key, and failover rule; point any OpenAI/Anthropic-compatible client's base_url at vmr with zero SDK changes. It performs byte-faithful passthrough (no protocol translation), error-class aware failover (rate limits, dead keys, content blocks), session-sticky prompt cache protection, two-layer raw byte audit, 1-click replay of any logged request, and agent task narrative analysis with cross-run divergence detection.
+
+**Pros**
+
+- Single ~15MB Go binary, zero database, zero external runtime dependencies; simple self-hosting.
+- Byte-faithful passthrough means upstream vendor features work day one and audit logs are trustworthy.
+- Flight-recorder workflow (replay, story, compare) is unique among lightweight gateways.
+
+**Cons**
+
+- Younger project with a small community; production maturity should be validated.
+- No hosted/managed tier; designed for teams that self-host.
 
 ### Managed / Hosted Gateways
 
