@@ -76,6 +76,8 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | Bifrost | [maximhq/bifrost](https://github.com/maximhq/bifrost) | Go | Apache-2.0 | Teams optimizing for low-overhead model routing and gateway performance. | Go implementation, model routing, load balancing, guardrails, observability and cost-oriented features. | Younger than established API gateways; benchmark and feature claims should be verified in your workload. |
 | Traceloop Hub | [traceloop/hub](https://github.com/traceloop/hub) | Rust | Apache-2.0 | Teams that want a high-performance OpenAI-compatible gateway with tracing and metrics built in. | Rust gateway, OpenAI-compatible API, OpenTelemetry tracing, Prometheus metrics, YAML mode, PostgreSQL-backed management mode, and Kubernetes assets. | Provider coverage is narrower than broad aggregators; database mode adds PostgreSQL and management API operations. |
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
+| ClawRouters | [clawrouters.com](https://clawrouters.com) | — | Proprietary | Teams that want a hosted multi-provider router that picks a model per request through one OpenAI-compatible endpoint. | OpenAI-compatible API, per-request model selection across providers, public weekly-verified pricing tracker, cost calculator. | Hosted service (not open-source); routing policy is operator-managed, so teams needing custom routing rules or self-hosting should look at the open-source entries. |
+| CodeRouter | [coderouter.io](https://www.coderouter.io) | — | Proprietary | Developers who want a hosted router for coding agents (Claude Code, Codex, Cursor) via one base-URL change. | OpenAI-compatible base URL, automatic model selection for coding workloads, setup guides for common coding agents. | Hosted service (not open-source); scoped to coding-agent traffic rather than general application gateway features. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
 
@@ -709,6 +711,46 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 ### Managed / Hosted Gateways
 
 The entries below are **hosted/proprietary gateway services**, not open-source self-hosted projects. They are included only when they serve similar routing, access, or OpenAI-compatible gateway use cases.
+
+#### ClawRouters
+
+- Website: [clawrouters.com](https://clawrouters.com)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+ClawRouters is a managed multi-provider LLM router behind a single OpenAI-compatible endpoint. It selects a model per request across providers, and publishes a weekly-verified LLM pricing tracker and a cost calculator alongside the service.
+
+**Pros**
+
+- OpenAI-compatible endpoint, so existing OpenAI-style clients work with a base-URL change.
+- Per-request model selection across providers aimed at cost-aware routing.
+- Public, dated pricing tracker and cost calculator are usable references even without the service.
+
+**Cons**
+
+- Proprietary hosted service rather than an open-source repository, so teams cannot self-host or audit source code from this listing.
+- Routing policy is operator-managed; teams that need custom routing rules or full infrastructure control are better served by the open-source entries above.
+- Pricing, provider coverage, and data handling should be validated directly before production adoption.
+
+#### CodeRouter
+
+- Website: [coderouter.io](https://www.coderouter.io)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+CodeRouter is a hosted router focused specifically on coding agents. Tools such as Claude Code, Codex CLI, and Cursor point at its OpenAI-compatible base URL and it selects models for coding workloads.
+
+**Pros**
+
+- Single base-URL change for common coding agents, with setup guides per tool.
+- Scoped to coding-agent traffic, which keeps configuration minimal for that use case.
+- Publishes an LLM API error reference that is useful independently of the service.
+
+**Cons**
+
+- Proprietary hosted service rather than an open-source repository, so teams cannot self-host or audit source code from this listing.
+- Narrower scope than general application gateways; not aimed at product/API traffic beyond coding tools.
+- Model availability and service terms should be validated directly before adoption.
 
 #### CoderPlan
 
