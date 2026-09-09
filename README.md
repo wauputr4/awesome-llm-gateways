@@ -79,6 +79,8 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
 
+| ModelRush | [modelrush.ai](https://modelrush.ai) | — | Proprietary | Developers who want hosted access to text, image, video, and voice models. | OpenAI-compatible chat, model-specific media endpoints, public docs, and prepaid usage-based credits. | Not self-hostable; no ongoing free tier or trial; media compatibility and age-restricted catalog eligibility require review. |
+
 <a id="projects"></a>
 
 ## 🧩 Projects
@@ -752,6 +754,28 @@ FerryAPI is a managed OpenAI-compatible AI API gateway for production applicatio
 - Pricing, provider behavior, model availability, data handling, and service terms should be validated directly before production adoption.
 - Less suitable for teams that need Kubernetes-native deployment, private-network routing, or full infrastructure ownership.
 
+#### ModelRush
+
+- Website: [modelrush.ai](https://modelrush.ai)
+- Docs: [modelrush.ai/docs](https://modelrush.ai/docs)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+ModelRush is a hosted API gateway for text, image, video, and voice models. Chat endpoints are OpenAI-compatible; media generation uses model-specific endpoints. Like FerryAPI, it offers managed access with prepaid usage-based billing, with a focus on multiple media types as well as chat.
+
+**Pros**
+
+- Hosted access avoids operating a self-hosted gateway.
+- Public documentation covers API-key authentication and integration.
+- Text and media model access share a prepaid credit balance.
+
+**Cons**
+
+- Proprietary service, not a self-hostable open-source gateway.
+- No ongoing free tier or trial; review [per-model pricing](https://modelrush.ai/pricing) before use.
+- OpenAI compatibility applies to chat, not every media endpoint; integrations must follow the selected model's documentation.
+- The catalog includes age-restricted Spicy models; review eligibility, content policies, data handling, and provider behavior before adoption.
+
 <a id="choosing-a-gateway"></a>
 
 ## 🧭 Choosing a Gateway
@@ -791,6 +815,7 @@ These are **starting points**, not final recommendations. Validate each candidat
 | Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 | Managed coding-tool gateway without self-hosting | CoderPlan |
 | Managed OpenAI-compatible gateway for production apps | FerryAPI |
+| Hosted text and media model access with prepaid credits | ModelRush |
 
 <a id="evaluation-criteria"></a>
 
