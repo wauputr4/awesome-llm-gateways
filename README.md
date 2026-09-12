@@ -752,6 +752,26 @@ FerryAPI is a managed OpenAI-compatible AI API gateway for production applicatio
 - Pricing, provider behavior, model availability, data handling, and service terms should be validated directly before production adoption.
 - Less suitable for teams that need Kubernetes-native deployment, private-network routing, or full infrastructure ownership.
 
+#### AIWave
+
+- Website: [aiwave.live](https://aiwave.live/)
+- Docs: [aiwave.live/docs](https://aiwave.live/docs/)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+AIWave is a managed OpenAI-compatible API gateway focused on Chinese model routes. It provides a hosted endpoint, one USD balance, dated per-model pricing, and request-level usage records.
+
+**Pros**
+
+- OpenAI-compatible chat endpoint for applications already using OpenAI-style clients.
+- One USD balance across the Chinese model routes listed in its public catalog.
+- Public dated pricing and request-level usage records support cost review.
+
+**Cons**
+
+- Proprietary hosted service rather than an open-source repository, so it cannot be self-hosted or source-audited from this listing.
+- Teams should validate current model availability, pricing, data handling, and service terms before production adoption.
+- Less suitable for teams that need private-network routing, custom gateway policy, or full infrastructure ownership.
 <a id="choosing-a-gateway"></a>
 
 ## 🧭 Choosing a Gateway
