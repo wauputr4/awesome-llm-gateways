@@ -78,7 +78,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
-| XiuRouter | [router.xiu.ai](https://router.xiu.ai/) | — | Proprietary | Developers and teams that need managed model access for coding agents and applications through several common API protocols. | OpenAI Responses and Chat Completions, Anthropic Messages, Gemini GenerateContent, scoped API keys, usage-based pricing, request usage records, and agent setup guides. | Hosted service (not open-source) with no automatic provider fallback; teams should validate current model availability, pricing, provider behavior, data handling, and service terms. |
+| XiuRouter | [router.xiu.ai](https://router.xiu.ai/) | — | Proprietary | Developers and teams that need managed model access for coding agents and applications through several common API protocols. | OpenAI Responses and Chat Completions, Anthropic Messages, Gemini GenerateContent, scoped API keys, usage-based pricing, request usage records, and agent setup guides. | Automatic service-group retries depend on key configuration; customer-owned deployment is a separate XiuAI offering. Validate current model availability, pricing, provider behavior, and service terms. |
 
 <a id="projects"></a>
 
@@ -772,8 +772,8 @@ XiuRouter is a managed LLM API gateway for applications and coding agents. It ex
 
 **Cons**
 
-- Proprietary hosted service rather than an open-source repository, so teams cannot self-host or audit the gateway source code from this listing.
-- XiuRouter does not provide automatic provider fallback; applications that require fallback should implement and test their own policy.
+- The hosted API and XiuAI's [customer-owned enterprise deployments](https://xiu.ai/zh/enterprise) (details in Chinese) are separate offerings with different delivery scopes and pricing.
+- [Automatic service-group retries](https://docs.xiu.ai/en/router/models-pricing-usage/) depend on API-key configuration; verify the final group and charge for the intended request instead of assuming a general cross-provider or cross-model failover policy.
 - Current model availability, provider behavior, pricing, data handling, regional availability, and service terms should be validated directly before production adoption.
 
 <a id="choosing-a-gateway"></a>
