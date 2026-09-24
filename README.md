@@ -78,6 +78,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
+| Requesty | [requesty.ai](https://www.requesty.ai/) | — | Proprietary | Teams that want a managed OpenAI-compatible and Anthropic-compatible gateway with routing policies and spend controls. | OpenAI-compatible API, Anthropic Messages route, 600+ models, fallback and load-balancing policies, auto caching, per-key spend limits, cost tracking, and an EU endpoint. | Hosted service (not open-source); traffic passes through a third-party service, so teams should validate data handling, pricing, and service terms before adoption. |
 
 <a id="projects"></a>
 
@@ -752,6 +753,29 @@ FerryAPI is a managed OpenAI-compatible AI API gateway for production applicatio
 - Pricing, provider behavior, model availability, data handling, and service terms should be validated directly before production adoption.
 - Less suitable for teams that need Kubernetes-native deployment, private-network routing, or full infrastructure ownership.
 
+#### Requesty
+
+- Website: [requesty.ai](https://www.requesty.ai/)
+- Docs: [docs.requesty.ai](https://docs.requesty.ai/)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+Requesty is a managed LLM gateway with an OpenAI-compatible API and an Anthropic Messages route. Applications and coding tools such as Claude Code point at one base URL and reach 600+ models, with fallback and load-balancing policies, caching, and spend limits configured per API key.
+
+**Pros**
+
+- OpenAI-compatible endpoint plus an Anthropic Messages route, so OpenAI-style clients and Anthropic SDK clients can both use it.
+- Fallback policies and weighted load-balancing policies across models and providers.
+- Per-request cost in the response `usage` object, cost analytics by model, user, and API key, and monthly spend limits per key.
+- EU endpoint for teams that need EU data residency.
+- Free plan limited to free models (200 requests per day); paid models are pay as you go at provider price plus 5%.
+
+**Cons**
+
+- Proprietary hosted service rather than an open-source repository, so teams cannot self-host or audit source code from this listing.
+- Prompts and responses pass through a third-party service, so data handling, retention, and service terms should be reviewed before production adoption.
+- The 5% fee on top of provider prices adds up for high-volume workloads compared with a self-hosted gateway.
+
 <a id="choosing-a-gateway"></a>
 
 ## 🧭 Choosing a Gateway
@@ -791,6 +815,7 @@ These are **starting points**, not final recommendations. Validate each candidat
 | Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 | Managed coding-tool gateway without self-hosting | CoderPlan |
 | Managed OpenAI-compatible gateway for production apps | FerryAPI |
+| Managed OpenAI- and Anthropic-compatible gateway with routing policies and per-key spend limits | Requesty |
 
 <a id="evaluation-criteria"></a>
 
