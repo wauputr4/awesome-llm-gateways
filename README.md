@@ -830,3 +830,5 @@ Contributions are welcome. Please keep entries **factual**, **comparable**, and 
 ## 📄 License
 
 This list is released under [CC0-1.0](LICENSE).
+
+[APIClaw](https://apiclaw.biz) — Flat-rate OpenAI-compatible AI API (Claude, GPT, Kimi, Qwen, DeepSeek, GLM), $19–$129/mo, 50 free trial.
