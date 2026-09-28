@@ -78,6 +78,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
+| Infere | [infere.com](https://infere.com) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway that picks the provider and model per request. | OpenAI-compatible endpoint, per-request routing by prompt complexity and required capabilities such as vision or tool calling, context compression before the provider call, fallback chains scoped by error type, prompts versioned as files in Git, and per-token budgets enforced before the provider call. | Hosted service (not open-source); routing, compression, and budget behavior should be validated against your own traffic, and pricing, data handling, and service terms verified directly before production adoption. |
 
 <a id="projects"></a>
 
@@ -751,6 +752,31 @@ FerryAPI is a managed OpenAI-compatible AI API gateway for production applicatio
 - Proprietary hosted service rather than an open-source repository, so teams cannot self-host or audit source code from this listing.
 - Pricing, provider behavior, model availability, data handling, and service terms should be validated directly before production adoption.
 - Less suitable for teams that need Kubernetes-native deployment, private-network routing, or full infrastructure ownership.
+
+#### Infere
+
+- Website: [infere.com](https://infere.com)
+- Docs: [infere.com/documentation](https://infere.com/documentation)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+Infere is a hosted OpenAI-compatible AI gateway that sits on the request path and routes each request to a model-provider combination based on prompt complexity and required capabilities such as vision or tool calling, with a per-request override. Prompts are versioned as files in real Git repositories, and evaluators, datasets, and regression policies gate a deploy.
+
+**Pros**
+
+- OpenAI-compatible endpoint at `https://api.infere.com/v1`, so existing OpenAI SDKs and clients work by changing the base URL.
+- Routing decisions combine prompt complexity with required capabilities, and compression runs before the provider call using head-tail token trimming, middle-out truncation, or LLM-based semantic compression.
+- Multi-provider fallback chains and circuit breakers, scoped by error type.
+- Prompts are stored as `.pml` files in Git repositories with branches, pull requests, and rollback; a prompt version deploys to an API token.
+- Evaluators, datasets with train/dev/test partitions, online evaluation on live traffic, and regression policies that gate a deploy.
+- Per-request observability (model, provider, cost, latency, time to first token, tokens, cache reads/writes, trace ID, session/turn, and tool calls) and governance across organizations, workspaces, and tokens with token-level capabilities, model allowlists, budgets with hard caps, rate/concurrency limits, IP ranges, and data residency enforced at the edge before a provider call.
+
+**Cons**
+
+- Proprietary hosted service rather than an open-source repository, so teams cannot self-host or audit source code from this listing.
+- Model routing, compression, and evaluation behavior should be validated against your own traffic rather than assumed.
+- Pricing, provider coverage, data handling, and service terms should be verified against the current service documentation before adoption.
+- Less suitable for teams that need to own the gateway deployment, private-network routing, or full infrastructure control.
 
 <a id="choosing-a-gateway"></a>
 
