@@ -710,6 +710,25 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 
 The entries below are **hosted/proprietary gateway services**, not open-source self-hosted projects. They are included only when they serve similar routing, access, or OpenAI-compatible gateway use cases.
 
+#### AutoRouter
+
+- Website: [autorouter.com](https://autorouter.com)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+AutoRouter is a Mac app, in beta, that adds its model choices to Codex and Claude Code and picks one for each turn.
+
+**Pros**
+
+- Shows up in the model picker people already use, so there is no new app to learn or configure.
+- Picks each turn's model from the difficulty of the task, with the person's own rules applied first.
+
+**Cons**
+
+- Beta software that runs on macOS 14 or later only.
+- Works with the Codex app and CLI and the Claude Code CLI. Claude Code needs Node 22.18 or later.
+- Proprietary hosted service, so teams should check pricing and data handling before adopting it.
+
 #### CoderPlan
 
 - Website: [coderplan.ai](https://coderplan.ai)
