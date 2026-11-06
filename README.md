@@ -78,6 +78,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
+| Code By AI | [codebyai.net](https://www.codebyai.net) | — | Proprietary | Developers who want one managed API key for Claude, Codex and Gemini coding agents without self-hosting. | One key/one balance across Claude, GPT/Codex and Gemini; OpenAI/Anthropic/Gemini wire formats; pay-per-token from about 1/6 of official prices. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
 
 <a id="projects"></a>
 
@@ -752,6 +753,27 @@ FerryAPI is a managed OpenAI-compatible AI API gateway for production applicatio
 - Pricing, provider behavior, model availability, data handling, and service terms should be validated directly before production adoption.
 - Less suitable for teams that need Kubernetes-native deployment, private-network routing, or full infrastructure ownership.
 
+#### Code By AI
+
+- Website: [codebyai.net](https://www.codebyai.net)
+- Docs: [codebyai.net/docs](https://www.codebyai.net/docs)
+- Language: Not applicable for the hosted service
+- License: Proprietary
+
+Code By AI is a managed unified API gateway for AI coding agents. One API key and one prepaid balance work across Claude, GPT/Codex and Gemini models, with native Anthropic Messages, OpenAI Responses/Chat Completions and Gemini wire formats.
+
+**Pros**
+
+- One key for Claude Code, Codex CLI, Gemini CLI, Cline, Trae and similar coding tools.
+- Pay-per-token pricing positioned from about 1/6 of official list prices, with no monthly subscription.
+- Hosted deployment can be useful when zero-config onboarding matters more than self-hosted control.
+
+**Cons**
+
+- Proprietary hosted service rather than an open-source repository, so teams should validate pricing, data handling, and service terms before adoption.
+- Less suitable for teams that require self-hosting, source-code review, or full infrastructure control.
+- Model coverage and protocol behavior should be verified against the current service documentation.
+
 <a id="choosing-a-gateway"></a>
 
 ## 🧭 Choosing a Gateway
@@ -791,6 +813,7 @@ These are **starting points**, not final recommendations. Validate each candidat
 | Gateway traffic connected to evaluation and experimentation loops | TensorZero |
 | Managed coding-tool gateway without self-hosting | CoderPlan |
 | Managed OpenAI-compatible gateway for production apps | FerryAPI |
+| Managed unified API key for Claude/Codex/Gemini coding agents | Code By AI |
 
 <a id="evaluation-criteria"></a>
 
