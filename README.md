@@ -713,20 +713,22 @@ The entries below are **hosted/proprietary gateway services**, not open-source s
 #### AutoRouter
 
 - Website: [autorouter.com](https://autorouter.com)
+- Docs: [fractal-works/autorouter-docs](https://github.com/fractal-works/autorouter-docs)
 - Language: Not applicable for the hosted service
 - License: Proprietary
 
-AutoRouter is a Mac app, in beta, that adds its model choices to Codex and Claude Code and picks one for each turn.
+AutoRouter is a Mac app, in beta, that adds 20+ models to Codex and Claude Code and picks one for each turn.
 
 **Pros**
 
-- Shows up in the model picker people already use, so there is no new app to learn or configure.
-- Picks each turn's model from the difficulty of the task, with the person's own rules applied first.
+- Shows up in the model picker people already use, with no keys or endpoints to set up.
+- Picks each turn's model from the difficulty of the task, with the person's own plain-English rules applied first.
+- Uses the ChatGPT and Claude plans people already pay for before spending credit, and shows each turn's model, cost and reason.
 
 **Cons**
 
 - Beta software that runs on macOS 14 or later only.
-- Works with the Codex app and CLI and the Claude Code CLI. Claude Code needs Node 22.18 or later.
+- Works with Codex (app and CLI), the Claude Code CLI, Cursor, Claude Desktop, T3 and Terminal. Claude Code needs Node 22.18 or later.
 - Proprietary hosted service, so teams should check pricing and data handling before adopting it.
 
 #### CoderPlan
