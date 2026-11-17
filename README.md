@@ -76,6 +76,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | Bifrost | [maximhq/bifrost](https://github.com/maximhq/bifrost) | Go | Apache-2.0 | Teams optimizing for low-overhead model routing and gateway performance. | Go implementation, model routing, load balancing, guardrails, observability and cost-oriented features. | Younger than established API gateways; benchmark and feature claims should be verified in your workload. |
 | Traceloop Hub | [traceloop/hub](https://github.com/traceloop/hub) | Rust | Apache-2.0 | Teams that want a high-performance OpenAI-compatible gateway with tracing and metrics built in. | Rust gateway, OpenAI-compatible API, OpenTelemetry tracing, Prometheus metrics, YAML mode, PostgreSQL-backed management mode, and Kubernetes assets. | Provider coverage is narrower than broad aggregators; database mode adds PostgreSQL and management API operations. |
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
+| Yabanin Core | [yabaninai/yabanin-core](https://github.com/yabaninai/yabanin-core) | Go | Apache-2.0 | Teams evaluating a self-hosted gateway with organization-scoped access and usage records. | OpenAI- and Anthropic-compatible APIs, model routing, access controls, request logs, and usage tracking. | Developer Preview; the Compose stack includes PostgreSQL and Redis, and protocol/client verification varies by route. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
 
@@ -705,6 +706,25 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 
 - Broader than a narrow provider proxy, so adoption may involve more workflow and data-model decisions.
 - Best fit depends on whether the team wants TensorZero's LLMOps platform concepts, not only routing and fallback behavior.
+
+### Yabanin Core
+
+- GitHub: [yabaninai/yabanin-core](https://github.com/yabaninai/yabanin-core)
+- Documentation: [Quickstart](https://github.com/yabaninai/yabanin-core/blob/main/docs/quickstart.md) and [compatibility matrix](https://github.com/yabaninai/yabanin-core/blob/main/docs/compatibility.md)
+- Language: Go
+- License: Apache-2.0
+
+Self-hosted AI gateway with OpenAI- and Anthropic-compatible APIs, model routing, organization-scoped access controls, request logs, and usage tracking.
+
+**Pros**
+
+- Gateway and administration features are available in the Apache-2.0 Core repository.
+- Documented Docker Compose quickstart includes a mock provider for trying the stack without a paid model account.
+
+**Cons**
+
+- Developer Preview: protocol and client verification levels vary; check the compatibility matrix before adopting a route.
+- The documented Compose deployment includes PostgreSQL and Redis, adding operational dependencies compared with a standalone stateless proxy.
 
 ### Managed / Hosted Gateways
 
