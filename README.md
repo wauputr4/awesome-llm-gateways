@@ -76,6 +76,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | Bifrost | [maximhq/bifrost](https://github.com/maximhq/bifrost) | Go | Apache-2.0 | Teams optimizing for low-overhead model routing and gateway performance. | Go implementation, model routing, load balancing, guardrails, observability and cost-oriented features. | Younger than established API gateways; benchmark and feature claims should be verified in your workload. |
 | Traceloop Hub | [traceloop/hub](https://github.com/traceloop/hub) | Rust | Apache-2.0 | Teams that want a high-performance OpenAI-compatible gateway with tracing and metrics built in. | Rust gateway, OpenAI-compatible API, OpenTelemetry tracing, Prometheus metrics, YAML mode, PostgreSQL-backed management mode, and Kubernetes assets. | Provider coverage is narrower than broad aggregators; database mode adds PostgreSQL and management API operations. |
 | TensorZero | [tensorzero/tensorzero](https://github.com/tensorzero/tensorzero) | Rust | Apache-2.0 | Teams that want an LLM gateway tied to observability, evaluation, optimization, and experimentation. | Rust gateway, model access layer, feedback/evaluation loop, experimentation-oriented LLMOps platform. | Broader platform than a standalone proxy; teams should confirm they want the surrounding LLMOps workflow, not only request routing. |
+| Svincolo | [vitofico/svincolo](https://github.com/vitofico/svincolo) | Rust | Apache-2.0 | Self-hosted routing for applications that share model providers. | Per-app tokens restrict route discovery and use. | Raw routes pin one upstream and use its native API format. |
 | CoderPlan | [coderplan.ai](https://coderplan.ai) | — | Proprietary | Developers who want a managed LLM API gateway for Claude Code, Cursor, Codex CLI, and Gemini CLI without self-hosting. | OpenAI-compatible API, pay-per-use, Claude/GPT/Gemini/DeepSeek models, Hong Kong/Singapore edge nodes, free credits for new users. | Hosted service (not open-source); best fit for developers who want zero-config API access rather than self-hosted gateway infrastructure. |
 | FerryAPI | [ferryapi.io](https://www.ferryapi.io/) | — | Proprietary | Developers and teams that want a managed OpenAI-compatible gateway for production apps. | OpenAI-compatible API, public docs, prepaid usage-based billing, developer API key management, and lower-cost model access positioning. | Hosted service (not open-source); teams should validate pricing, provider behavior, data handling, and service terms before adoption. |
 
@@ -705,6 +706,25 @@ TensorZero is an open-source LLMOps platform that includes an LLM gateway alongs
 
 - Broader than a narrow provider proxy, so adoption may involve more workflow and data-model decisions.
 - Best fit depends on whether the team wants TensorZero's LLMOps platform concepts, not only routing and fallback behavior.
+
+### Svincolo
+
+- GitHub: [vitofico/svincolo](https://github.com/vitofico/svincolo)
+- Documentation: [Route configuration](https://github.com/vitofico/svincolo/blob/main/docs/configuration.md)
+- Language: Rust
+- License: Apache-2.0
+
+Svincolo is a self-hosted gateway that gives each application a token and a set of named routes. A search service can use a local embeddings route while a writing app can choose between local and hosted chat models.
+
+**Pros**
+
+- Provider credentials stay in the gateway. Applications discover and call only the routes allowed by their token.
+- Operators can change the model behind an alias without updating clients.
+
+**Cons**
+
+- Raw routes forward provider-native requests. Moving an alias between incompatible API formats requires a client change.
+- Managed Chat supports non-streaming requests.
 
 ### Managed / Hosted Gateways
 
