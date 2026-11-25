@@ -54,6 +54,7 @@ Use this table for **first-pass filtering**. The detailed project notes below ad
 | A3M Router | [Das-rebel/a3m-router](https://github.com/Das-rebel/a3m-router) | TypeScript | MIT | Teams that want parallel multi-LLM execution with confidence scoring and a small footprint. | Parallel ensemble routing, 47+ providers, semantic cache, circuit breaker, guardrails, and RouteLLM-style classification signals. | Newer project with a smaller community; benchmark, cost-savings, and routing-accuracy claims should be validated on your own workloads. |
 | NadirClaw | [NadirRouter/NadirClaw](https://github.com/NadirRouter/NadirClaw) | Python | MIT | Developers who want a local OpenAI/Anthropic-compatible router that sends simple prompts to cheaper or local models. | Prompt-complexity routing, coding-tool compatibility, OpenAI and Anthropic API surfaces, fallback chains, streaming, cost tracking, budgets, caching, dashboard, and Docker support. | Cost-savings claims and classifier accuracy should be validated on real workloads; local-first routing is less suited to teams that need centralized multi-tenant governance out of the box. |
 | Agentgateway | [agentgateway/agentgateway](https://github.com/agentgateway/agentgateway) | Rust | Apache-2.0 | Platform teams that need agentic AI traffic governance across LLM, MCP, and A2A flows. | OpenAI-compatible LLM routing, MCP and A2A gateway support, budget/spend controls, prompt enrichment, load balancing, failover, guardrails, auth/RBAC, OpenTelemetry, and Kubernetes options. | Broader agentic-proxy scope than a narrow model gateway; teams should validate LLM provider behavior and operational maturity against their own agent/tool traffic. |
+| Open Agent API | [jiangxingfan1-coder/Open-Agent-API](https://github.com/jiangxingfan1-coder/Open-Agent-API) | TypeScript | Apache-2.0 | Developers exposing existing coding agents or built-in agents through familiar API clients. | Self-hosted agent gateway, OpenAI/Claude/Gemini-compatible endpoints, task queuing, approvals, and MCP access. | Interaction depth varies by adapter; external agents inherit host privileges unless separately sandboxed. Validate the specific agent and deployment. |
 | Plano | [katanemo/plano](https://github.com/katanemo/plano) | Rust | Apache-2.0 | Teams building agentic applications that want an out-of-process proxy/data plane for orchestration, LLM routing, safety, and traces. | Envoy-rooted Rust proxy, OpenAI-compatible agent endpoints, semantic model aliases/preferences, guardrail filter chains, OpenTelemetry traces/metrics, YAML configuration, and hosted/local routing-model options. | Broader agentic-app platform than a minimal provider proxy; teams should validate routing-model dependency, local model setup, and production operations for their deployment. |
 | Barbacane | [barbacane-dev/barbacane](https://github.com/barbacane-dev/barbacane) | Rust | AGPL-3.0 | API/platform teams that want one spec-first gateway for outbound LLM calls and inbound MCP tool exposure. | OpenAI-compatible LLM dispatcher, OpenAI/Anthropic/Ollama provider fallback, OpenAPI-to-MCP exposure, token limits, prompt/response guards, Prometheus metrics, OpenTelemetry traces, and WASM plugin model. | AGPL/commercial licensing needs review; broader API gateway architecture may be more than teams need for a simple provider proxy. |
 | Envoy AI Gateway | [envoyproxy/ai-gateway](https://github.com/envoyproxy/ai-gateway) | Go | Apache-2.0 | Kubernetes/cloud-native teams already aligned with Envoy Gateway. | Built on Envoy Gateway, strong infrastructure pedigree, Kubernetes-native direction. | Younger project than general API gateways; feature surface may be narrower for app-level LLMOps needs. |
@@ -233,6 +234,24 @@ Agentgateway is a Rust-based agentic AI proxy for LLM, MCP, and A2A traffic. Its
 - Broader agentic-proxy scope may be unnecessary for teams that only need a small OpenAI-compatible provider proxy.
 - Project is moving quickly, so exact LLM provider behavior, controller maturity, and policy workflows should be validated before production adoption.
 - MCP/A2A and agent governance features add concepts and operations beyond traditional model routing.
+
+### Open Agent API
+
+- GitHub: [jiangxingfan1-coder/Open-Agent-API](https://github.com/jiangxingfan1-coder/Open-Agent-API)
+- Language: TypeScript
+- License: Apache-2.0
+
+Open Agent API is a self-hosted gateway that publishes built-in agents and configured external agents as API-callable tasks. Unlike a provider-focused model proxy, it targets agents with their own tools and execution context.
+
+**Pros**
+
+- OpenAI, Claude, and Gemini-compatible interfaces, with a model-free sample for trying the request flow.
+- Task queuing, approval support, and MCP access; available interaction features depend on the selected adapter.
+
+**Trade-offs**
+
+- Native agents need their own installation, sign-in, and any applicable quota; the offline sample does not validate a live agent.
+- External agents inherit host privileges unless separately sandboxed. Check the [adapter matrix](https://github.com/jiangxingfan1-coder/Open-Agent-API/blob/main/docs/adapters.md) and deployment security guidance before use.
 
 ### Plano
 
@@ -767,6 +786,7 @@ These are **starting points**, not final recommendations. Validate each candidat
 | Parallel multi-LLM execution with confidence scoring | A3M Router |
 | Local prompt-complexity routing for coding tools and cost control | NadirClaw |
 | Agentic AI traffic governance across LLM, MCP, and A2A flows | Agentgateway |
+| Self-hosted API access to configured coding agents and their task workflows | Open Agent API |
 | Agentic application data plane with orchestration, guardrails, LLM routing, and traces | Plano |
 | Spec-first outbound LLM routing plus inbound OpenAPI-to-MCP tool exposure | Barbacane |
 | Kubernetes-native AI traffic management on Envoy | Envoy AI Gateway |
